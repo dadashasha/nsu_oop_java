@@ -84,7 +84,7 @@ public class BullsAndCowsGame {
         userEnteredNumber = new int[numberLength];
 
         // проверяем, что введенная строка содержит только цифры и ее длина совпадает с ожидаемой длиной числа
-        if (userNumString.matches("\\d*" + numberLength + "}")) { // регулярное выражение означает, что строка должна состоять из numberLength подряд
+        if (userNumString.matches("\\d{" + numberLength + "}")) { // регулярное выражение означает, что строка должна состоять из numberLength подряд
             // Преобразуем строку в массив цифр
             for (int i = 0; i < numberLength; ++i) {
                 // метод, к. преобраз. символ в числ. знач., представляющ. этот символ, иначе -1
