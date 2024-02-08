@@ -106,32 +106,22 @@ class BullsAndCowsGame {
     private void checkUserNumber(int[] userEnteredNumber) {
         int bulls = 0;
         int cows = 0;
-        int i = 0;
+        boolean[] foundBulls = new boolean[numberLength];
+        boolean[] foundCows = new boolean[numberLength];
+
         while (i < numberLength){
             if (userEnteredNumber[i] == computerGuessedNumber[i]){
                 ++bulls;
-                ++i;
+                foundBulls[i] = true;
             }
             for (int j = i; j < numberLength; ++j){
-                if (userEnteredNumber[i] == computerGuessedNumber[j]) {
+                if (!foundBulls[j] && !foundCows[j] && userEnteredNumber[i] == computerGuessedNumber[j]) {
                     ++cows;
+                    foundCows[j] = true;
+                    break;
                 }
             }
-            ++i;
         }
-        /*for (int i = 0; i < numberLength; ++i){
-            if (userEnteredNumber[i] == computerGuessedNumber[i]){
-                ++bulls;
-            }
-            else {
-                for (int j = 0; j < numberLength; ++j) {
-                    if (userEnteredNumber[i] == computerGuessedNumber[j]) {
-                        ++cows;
-                        //break; // закомментировав это, стало на 1 меньше
-                    }
-                }
-            }
-        }*/
 
         // выводим результат проверки
         if (bulls == numberLength) {
