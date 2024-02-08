@@ -72,28 +72,33 @@ public class BullsAndCowsGame {
         return tempArr;
     }
 
+
+    public void setUserEnteredNumber(int[] userEnteredNumber){
+        this.userEnteredNumber = userEnteredNumber;
+    }
     // ввод числа пользователя
     private int[] getUserEnteredNumber(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите число длинной " + numberLength + " цифр");
         String userNumString = scanner.nextLine(); // читается вся строка, введенная пользователем
-        int[] tempArr = new int[numberLength];
+        userEnteredNumber = new int[numberLength];
 
         // проверяем, что введенная строка содержит только цифры и ее длина совпадает с ожидаемой длиной числа
-        if (userNumString.matches("\\d{" + numberLength + "}")) { // регулярное выражение означает, что строка должна состоять из numberLength подряд
+        if (userNumString.matches("\\d*" + numberLength + "}")) { // регулярное выражение означает, что строка должна состоять из numberLength подряд
             // Преобразуем строку в массив цифр
             for (int i = 0; i < numberLength; ++i) {
                 // метод, к. преобраз. символ в числ. знач., представляющ. этот символ, иначе -1
-                tempArr[i] = Character.getNumericValue(userNumString.charAt(i)); // символ на позиции i в строке input
+                userEnteredNumber[i] = Character.getNumericValue(userNumString.charAt(i)); // символ на позиции i в строке input
             }
         } else {
             // если введенная строка не соответствует ожидаемой длине или содержит нецифровые символы, выдаем сообщение об ошибке
             System.out.println("Ошибка! Введите число из " + numberLength + " цифр.");
             // рекурсивно вызываем этот метод снова, чтобы попросить пользователя ввести число снова
-            tempArr = getUserEnteredNumber();
+            userEnteredNumber = getUserEnteredNumber();
         }
 
-        return tempArr;
+        setUserEnteredNumber(userEnteredNumber);
+        return userEnteredNumber;
     }
 
 
