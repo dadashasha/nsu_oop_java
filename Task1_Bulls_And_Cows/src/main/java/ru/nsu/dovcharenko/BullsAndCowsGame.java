@@ -2,7 +2,7 @@ package ru.nsu.dovcharenko;
 
 import java.util.Scanner;
 
-public class BullsAndCowsGame {
+class BullsAndCowsGame {
     private int[] computerGuessedNumber; // задуманное компьютером число
     private int[] userEnteredNumber; // введенное пользователем число
     private int numberLength; // длинна массива для чисел
@@ -106,15 +106,19 @@ public class BullsAndCowsGame {
     private void checkUserNumber(int[] userEnteredNumber) {
         int bulls = 0;
         int cows = 0;
-        for (int i = 0; i < numberLength; ++i){
+        boolean[] foundBulls = new boolean[numberLength];
+        boolean[] foundCows = new boolean[numberLength];
+
+        while (i < numberLength){
             if (userEnteredNumber[i] == computerGuessedNumber[i]){
                 ++bulls;
-            } else {
-                for (int j = 0; j < numberLength; ++j) {
-                    if (userEnteredNumber[i] == computerGuessedNumber[j]) {
-                        ++cows;
-                        break;
-                    }
+                foundBulls[i] = true;
+            }
+            for (int j = i; j < numberLength; ++j){
+                if (!foundBulls[j] && !foundCows[j] && userEnteredNumber[i] == computerGuessedNumber[j]) {
+                    ++cows;
+                    foundCows[j] = true;
+                    break;
                 }
             }
         }
