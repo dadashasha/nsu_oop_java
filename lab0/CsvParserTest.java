@@ -2,7 +2,6 @@ package lab0;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -14,7 +13,7 @@ class CsvParserTest {
 
     @Test
     void testReadFile() {
-        List<String> lines = CsvParser.readFile("sample1.txt");
+        List<String> lines = CsvParser.readFile("lab0/sample1.txt");
         assertNotNull(lines, "Файл должен быть считан");
         assertFalse(lines.isEmpty(), "Файл не должен быть пустым");
     }
@@ -42,7 +41,7 @@ class CsvParserTest {
     }
 
     @Test
-    void testCreateCsvFile() throws IOException {
+    void testCreateCsvFile() {
         Map<String, Integer> wordCountMap = Map.of("apple", 3, "banana", 2, "cherry", 1);
         String outputFile = "test_output.csv";
         CsvParser.createCsvFile(wordCountMap, 6, outputFile);

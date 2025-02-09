@@ -10,7 +10,7 @@ public class Main {
 
         // Чтение файла построчно
 //      List<String> strings = CsvParser.readFile("sample1.txt");
-        List<String> strings = CsvParser.readFile("sample1.txt");
+        List<String> strings = CsvParser.readFile("lab0/sample1.txt");
         System.out.println(strings);
 
         // Преобразование списка строк в список слов
@@ -27,7 +27,7 @@ public class Main {
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,
-                        (e1, e2) -> e1, // Объединение дубликатов (не используется)
+                        (e1, _) -> e1, // Объединение дубликатов (не используется)
                         LinkedHashMap::new // Сохраняем порядок сортировки
                 ));
 
